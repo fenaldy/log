@@ -3,14 +3,13 @@ import sys
 import psycopg2
 from datetime import datetime
 
-class dbutil(object):
+class Db(object):
     
     conn = None
     cursor = None
     
     def __init__(self): 
         self.connect() 
-        print "A"
 
     def connect(self):
         db = "hrisok"
