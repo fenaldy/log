@@ -10,7 +10,7 @@ log_speed = 1 # in seconds
 counter = 0
 counter_modulus = 5 # raise error exactly at n iteration
 
-with open('err_template.txt','r') as f:
+with open('./docs/err_template.txt','r') as f:
     err_template = f.read()
 
 while True:

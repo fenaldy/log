@@ -1,6 +1,4 @@
-
-
-from dbutil import dbutil
+from Db import Db
 import subprocess
 import re
 from datetime import datetime
@@ -11,7 +9,7 @@ class LiveDaemon(object):
     db = None
 
     def __init__(self):
-        self.db = dbutil()
+        self.db = Db()
 
     def run(self):
         listener = subprocess.Popen(['tail','-F', self.logfile],
