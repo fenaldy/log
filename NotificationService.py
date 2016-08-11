@@ -1,18 +1,37 @@
 
 import smtplib
-
-def sendemail(from_addr, to_addr_list, cc_addr_list,
-              subject, message,
-              login, password,
-              smtpserver='smtp.gmail.com', smtpport=587):  # split smtpserver and -port
-    header  = 'From: %s\n' % from_addr
-    header += 'To: %s\n' % ','.join(to_addr_list)
-    header += 'Cc: %s\n' % ','.join(cc_addr_list)
-    header += 'Subject: %s\n\n' % subject
-    message = header + message
-
-    server = smtplib.SMTP(smtpserver, smtpport)  # use both smtpserver  and -port 
-    server.starttls()
-    server.login(login,password)
-    problems = server.sendmail(from_addr, to_addr_list, message)
-    server.quit()
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+from email.MIMEBase import MIMEBase
+from email import encoders
+ 
+fromaddr = ""
+toaddr = "fenaldy@gmail.com"
+ 
+msg = MIMEMultipart()
+ 
+msg['From'] = fromaddr
+msg['To'] = toaddr
+msg['Subject'] = "SUBJECT OF THE EMAIL"
+ 
+body = "TEXT YOU WANT TO SEND"
+ 
+msg.attach(MIMEText(body, 'plain'))
+ 
+filename = "NAME OF THE FILE WITH ITS EXTENSION"
+attachment = open("./docs/err_template.txt", "rb")
+ 
+part = MIMEBase('application', 'octet-stream')
+part.set_payload((attachment).read())
+encoders.encode_base64(part)
+part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+ 
+msg.attach(part)
+ 
+server = smtplib.SMTP('smtp.gmail.com:587')
+server.ehlo()
+server.starttls()
+server.login(fromaddr, "put_your_password_here")
+text = msg.as_string()
+server.sendmail(fromaddr, toaddr, text)
+server.quit()
