@@ -11,11 +11,11 @@ class Db(object):
         self.connect() 
 
     def connect(self):
-        db = "hrisok"
-        username = "hris"
-        password = "fl4tr0n!"
-        host = "dev"
-        port = "5433"
+        db = "syslog"
+        username = "fenaldy"
+        password = "salman"
+        host = "localhost"
+        port = "5432"
         self.conn = psycopg2.connect(database=db, user=username, 
                     password=password, host=host, port=port)
         self.conn.set_session(isolation_level=None, readonly=None, deferrable=None, autocommit=True)
