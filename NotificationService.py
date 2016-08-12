@@ -1,12 +1,12 @@
 import smtplib
 
 class NotificationService(object):
-  from_addr = 'fenaldy12@gmail.com'
+  from_addr = 'blablabla'
   to_addr_list = ['fenaldy13@gmail.com']
   cc_addr_list = ['example@gmail.com']
   subject = 'Pesan Error !'
   login = 'fenaldy12@gmail.com'
-  password = 'thez4rk0m'
+  password = 'blablabla'
   smtpserver = 'smtp.gmail.com'
   smtpport = 587
 
